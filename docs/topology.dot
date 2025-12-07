@@ -1,0 +1,50 @@
+graph DatacenterTree {
+  rankdir=TB;
+  node [shape=box, style=filled, fillcolor="#f0f4ff"];
+
+  core [label="core\nRouter", shape=box, fillcolor="#ffd966"];
+  a1 [label="a1\nAggregation Router", shape=box, fillcolor="#cfe2f3"];
+  a2 [label="a2\nAggregation Router", shape=box, fillcolor="#cfe2f3"];
+
+  subgraph cluster_e1 {
+    label="e1 subnet: 172.16.0.0/28\nHosts ≈10";
+    style=dashed;
+    edge_switch_e1 [label="Edge Switch (L2)", shape=component, fillcolor="#e2efda"];
+    host_e1 [label="Hosts e1", shape=ellipse, fillcolor="#e2efda"];
+  }
+
+  subgraph cluster_e2 {
+    label="e2 subnet: 172.16.0.16/28\nHosts ≈10";
+    style=dashed;
+    edge_switch_e2 [label="Edge Switch (L2)", shape=component, fillcolor="#e2efda"];
+    host_e2 [label="Hosts e2", shape=ellipse, fillcolor="#e2efda"];
+  }
+
+  subgraph cluster_e3 {
+    label="e3 subnet: 172.16.1.0/27\nHosts ≈20";
+    style=dashed;
+    edge_switch_e3 [label="Edge Switch (L2)", shape=component, fillcolor="#e2efda"];
+    host_e3 [label="Hosts e3", shape=ellipse, fillcolor="#e2efda"];
+  }
+
+  subgraph cluster_e4 {
+    label="e4 subnet: 172.16.1.32/27\nHosts ≈20";
+    style=dashed;
+    edge_switch_e4 [label="Edge Switch (L2)", shape=component, fillcolor="#e2efda"];
+    host_e4 [label="Hosts e4", shape=ellipse, fillcolor="#e2efda"];
+  }
+
+  core -- a1 [label="fiber 40Gbps / ~1ms"];
+  core -- a2 [label="fiber 40Gbps / ~1ms"];
+
+  a1 -- edge_switch_e1 [label="fiber/copper 10Gbps / ~0.5ms"];
+  a1 -- edge_switch_e2 [label="fiber/copper 10Gbps / ~0.5ms"];
+
+  a2 -- edge_switch_e3 [label="fiber/copper 10Gbps / ~0.5ms"];
+  a2 -- edge_switch_e4 [label="fiber/copper 10Gbps / ~0.5ms"];
+
+  edge_switch_e1 -- host_e1 [label="copper Cat6 1Gbps / ~0.1ms"];
+  edge_switch_e2 -- host_e2 [label="copper Cat6 1Gbps / ~0.1ms"];
+  edge_switch_e3 -- host_e3 [label="copper Cat6 1Gbps / ~0.1ms"];
+  edge_switch_e4 -- host_e4 [label="copper Cat6 1Gbps / ~0.1ms"];
+}
