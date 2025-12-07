@@ -44,6 +44,3 @@ dot -Tpng docs/topology.dot -o docs/topology.png
 - Roteamento estático com sumarização no `core` por agregador.
 - Switches são L2 (sem IP); hosts usam gateway padrão do roteador de agregação.
 - O simulador usa latências por enlace e jitter simples para compor RTT.
-
-## Próximos passos (Fase 3)
-- Gravar um vídeo curto (~5 min) demonstrando: topologia, IPs, tabelas de roteamento e execução de um `xprobe`, com breve análise dos resultados.
