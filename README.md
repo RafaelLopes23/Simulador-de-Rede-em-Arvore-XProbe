@@ -5,6 +5,7 @@ Este projeto implementa a topologia de árvore (Figura 1) com roteadores `core`,
 ## Estrutura
 - `docs/addressing_plan.md`: plano de endereçamento, enlaces e justificativas.
 - `docs/topology.dot`: diagrama GraphViz (topologia e enlaces).
+- `docs/topology.png`: imagem da topologia.
 - `src/`: código-fonte do simulador e CLI `xprobe`.
 
 ## Requisitos
